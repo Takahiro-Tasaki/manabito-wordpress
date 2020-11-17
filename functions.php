@@ -3,6 +3,10 @@ function theme_setup() {
 	add_theme_support( 'title-tag' );
 	
 	add_theme_support( 'custom-logo' );
+	
+	register_nav_menus( array(
+		'global' => 'Global Menu'
+	) );
 }
 add_action( 'after_setup_theme', 'theme_setup' );
 
@@ -23,3 +27,12 @@ function theme_sciprts() {
 	wp_enqueue_script( 'theme-slider', get_template_directory_uri() . '/js/slide.js', array( 'bxslider' ), null, true );
 }
 add_action( 'wp_enqueue_scripts', 'theme_sciprts' );
+
+function theme_widgets_init() {
+	register_sidebar( array(
+		'name'        => 'Sidebar',
+		'id'          => 'sidebar-1',
+		'description' => '右のサイドバーエリア'
+	) );
+}
+add_action( 'widgets_init', 'theme_widgets_init' );
